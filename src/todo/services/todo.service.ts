@@ -1,27 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Todo } from './types/todo.interface';
+import { Todo } from '../types/todo.interface';
 import { Model } from 'mongoose'
 import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class TodoService {
-    // private readonly todos: Todo[] = [
-    //     {
-    //         id: '1',
-    //         name: 'NestJS',
-    //         description: 'This is a todo for NestJS development'
-    //     },
-    //     {
-    //         id: '2',
-    //         name: 'NextJS',
-    //         description: 'This is a todo for NextJS development'
-    //     },
-    //     {
-    //         id: '3',
-    //         name: 'Express',
-    //         description: 'This is a todo for Express development'
-    //     }
-    // ];
+
     constructor(@InjectModel('Todo') private readonly todoModel:Model<Todo>){}
 
     async findAllTodos(): Promise<Todo[]> {
