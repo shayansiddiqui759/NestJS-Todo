@@ -5,8 +5,8 @@ services:
     build: 
       dockerfile: ./Dockerfile
     container_name: todo_server
-    # volumes:
-    #   - ./src/:/app
+    volumes:
+      - ./src/:/app/src
     command: npm run start:dev
     networks:
       - todo_network
@@ -17,7 +17,7 @@ services:
     restart: always
   mongo:
     image: mongo:6.0.3
-    container_name: mongo
+    container_name: todo_db
     networks:
       - todo_network
     volumes:

@@ -10,13 +10,13 @@ COPY tsconfig*.json /app/
 
 # Install the dependencies
 RUN npm install
+
+COPY ./src /app/src
 RUN npm run build
 
-
-COPY ./dist /app/
 COPY ./config /app/config
 
-#Expose port 4000
+#Expose port 3000
 EXPOSE 3000
 
 CMD ["node", "dist/main"]
