@@ -3,32 +3,34 @@ version: '2.12.2'
 services:
   server:
     build: 
-      dockerfile: Dockerfile
-      context: ./src
-    volumes:
-      - ./src/:data/src/app
+      dockerfile: ./Dockerfile
+    container_name: todo_server
+    # volumes:
+    #   - ./src/:/app
     command: npm run start:dev
     networks:
       - todo_network
     ports:
-      - "4000:4000"
+      - "3000:3000"
     links:
       - mongo
     restart: always
   mongo:
-    build: ./mongo
-    image: NextJStodo/mongodb
+    image: mongo:6.0.3
     container_name: mongo
     networks:
       - todo_network
     volumes:
-      - mongo_vol: data/db
+      - mongo_vol:/data/db
     restart: always
-  volumes:
-    mongo_vol: ~
+    ports:
+      - "27017:27017"
 
-  networks:
-    todo_network:
-      driver: bridge
+volumes:
+  mongo_vol: ~
+
+networks:
+  todo_network:
+    driver: bridge
     
   

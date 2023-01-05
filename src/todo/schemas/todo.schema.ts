@@ -1,6 +1,6 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 
 export const TodoSchema = new mongoose.Schema({
-    name: String,
-    description: String,
+  name: String,
+  description: String,
 });
