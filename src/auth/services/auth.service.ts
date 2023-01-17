@@ -1,4 +1,4 @@
-import { UsersService } from 'src/users/services/users.service';
+
 import { Injectable } from '@nestjs/common';
 import { sign } from 'jsonwebtoken';
 import * as fs from 'fs';
@@ -12,4 +12,5 @@ export class AuthService {
       algorithm: 'RS256',
     });
   }
+  
 }

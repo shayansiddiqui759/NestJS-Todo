@@ -8,7 +8,7 @@ export class UsersController {
   constructor(
     private userService: UsersService,
     private authService: AuthService,
-  ) {}
+  ) { }
 
   @Post('register')
   async register(@Body() userRegisterDTO: UserRegisterDTO) {
@@ -17,17 +17,19 @@ export class UsersController {
       email: user.email,
     };
 
-    return { user: user, token: 'asd' };
+    return { user: user };
   }
 
   @Post('login')
-  async login(@Body() user: UserLoginDTO) {
-    // const user = await this.userService.login(userLoginDTO);
+  async login(@Body() userLoginDTO: UserLoginDTO) {
+   const user = await this.userService.login(userLoginDTO);
     const payload = {
       email: user.email,
-      role: 'haroon',
+      userId: user._id.toString()
     };
     const token = await this.authService.signPayload(payload);
     return { user: payload, token };
   }
 }
+
+
