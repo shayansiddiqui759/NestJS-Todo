@@ -15,8 +15,15 @@ export class TodoService {
     return await this.todoModel.findOne({ name: name });
   }
 
+  // async addTodo(todo: Todo, userId: Todo['user']): Promise<Todo> {
   async addTodo(todo: Todo): Promise<Todo> {
-    const newTodo = new this.todoModel(todo);
+     
+    const addTodo = {
+      name: todo.name,
+      description: todo.description,
+      // user: userId 
+    }
+    const newTodo = new this.todoModel(addTodo);
     return await newTodo.save();
   }
   async deleteTodo(id: string): Promise<Todo> {
